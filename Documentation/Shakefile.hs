@@ -36,7 +36,7 @@ main = shakeArgs shakeOptions{shakeFiles="shakecache"} $ do
 
   styleCodePath %> \out -> do
     let src = "Documentation/Style/Code.hs"
-    let css = renderWith pretty [] stylesheet
+    let css = renderWith compact [] stylesheet
     need [src]
     writeFileChanged out (unpack css)
 
