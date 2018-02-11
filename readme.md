@@ -12,7 +12,14 @@ It uses a custom theme to improve the design.
 
 ## Development
 
-Install the "Velvet" Haddock theme:
+Install dependencies:
+
+```sh
+npm install
+```
+
+
+Install and build the "Velvet" Haddock theme:
 
 ```sh
 git clone https://github.com/sourrust/velvet
@@ -21,14 +28,7 @@ npx grunt
 ```
 
 
-Then run this to build the custom syntax highlithing theme:
-
-```sh
-./Documentation/Shakefile.hs
-```
-
-
-Finally build the documenatation:
+Finally build the documenatation.
 (assuming this repo lies in Feram's root directory)
 
 ```fish
@@ -38,8 +38,14 @@ haddock \
   --hyperlinked-source \
   --odir=./docs/j8PrKBwA \
   --theme=./velvet/build \
-  --source-css=./node_modules/highlight.js/styles/monokai.css \
   --title="Feram's Documentation" \
   --prologue="./prologue.md" \
   (fd --exclude=migrate.hs "\.l?hs\$" "..")
+```
+
+
+Then run this to overwrite the default syntax highlighting theme:
+
+```sh
+./Documentation/Shakefile.hs
 ```
