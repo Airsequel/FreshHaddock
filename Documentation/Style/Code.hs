@@ -41,10 +41,10 @@ stylesheet = do
     -- zIndex (-10)
 
 
-  "a" ? do
+  a ? do
     textDecoration none
 
-    "span" ? do
+    span ? do
       position relative
       zIndex 1
 
@@ -62,16 +62,26 @@ stylesheet = do
         filter (brightness 0.4)
         zIndex (-1)
 
-
   a # hover <> a # ".hover-highlight" ? do
-    "span" ? do
+    span ? do
       backgroundColor bgMuted
-      -- Fake padding with box-shadow and outline
+
+      -- Generate a fake padding with box-shadow and outline
       boxShadowWithSpread (em 0) (em 0) (em 0) (px 3) (other "currentColor")
       outline solid (px 2) bgMuted
+
       filter (brightness 1.4)
       after & do
         borderBottomWidth (px 0)
+
+  ":target" <> ":target span" ? do
+    backgroundColor bgMuted
+    boxShadowWithSpread (em 0) (em 0) (em 10) (em 0.2) fgQuiet
+    outline solid (px 2) bgMuted
+    borderWidth (px 0)
+    zIndex 10
+    after & do
+      borderBottomWidth (px 0)
 
 
   ".hs-identifier" ? do

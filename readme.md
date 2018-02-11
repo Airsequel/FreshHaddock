@@ -1,7 +1,13 @@
 # Feram's Documentation
 
 This repo contains Feram's documentation hosted at
-[feram.io/documentation/j8PrKBwA/](https://feram.io/documentation/j8PrKBwA/)
+[feram.io/documentation/j8PrKBwA/][docs-url]
+
+It uses a custom theme to improve the design.
+![Screenshot syntax highlighting][screenshot]
+
+[docs-url]: https://feram.io/documentation/j8PrKBwA/
+[screenshot]: ./images/2018-02-11_syntax_highligthing_browser.png
 
 
 ## Development

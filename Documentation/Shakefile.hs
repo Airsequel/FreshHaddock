@@ -10,7 +10,7 @@
 {- |
 Description: -
   Generate Feram's documentation living at
-  <feram.io/docs/[secret]>
+  <feram.io/documentation/[secret]>
 -}
 
 module Documentation.Shakefile where
