@@ -1,0 +1,8 @@
+dependencies:
+  - base
+  - clay
+  - shake
+  - text
+
+library:
+  source-dirs: .

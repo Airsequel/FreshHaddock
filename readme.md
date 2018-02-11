@@ -1,7 +1,7 @@
 # Feram's Documentation
 
 This repo contains Feram's documentation hosted at
-[feram.io/documentation/j8PrKBwA](https://feram.io/documentation/j8PrKBwA)
+[feram.io/documentation/j8PrKBwA/](https://feram.io/documentation/j8PrKBwA/)
 
 
 ## Development
@@ -11,13 +11,18 @@ Install the "Velvet" Haddock theme:
 ```sh
 git clone https://github.com/sourrust/velvet
 cd velvet
-npm install --save \
-  grunt grunt-contrib-less grunt-contrib-copy grunt-contrib-watch
 npx grunt
 ```
 
 
-Then build the documenatation:
+Then run this to build the custom syntax highlithing theme:
+
+```sh
+./Documentation/Shakefile.hs
+```
+
+
+Finally build the documenatation:
 (assuming this repo lies in Feram's root directory)
 
 ```fish
@@ -27,6 +32,7 @@ haddock \
   --hyperlinked-source \
   --odir=./docs/j8PrKBwA \
   --theme=./velvet/build \
+  --source-css=./node_modules/highlight.js/styles/monokai.css \
   --title="Feram's Documentation" \
   --prologue="./prologue.md" \
   (fd --exclude=migrate.hs "\.l?hs\$" "..")
