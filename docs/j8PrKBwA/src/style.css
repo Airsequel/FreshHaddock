@@ -1,55 +1,70 @@
-body {
-	background-color: #fdf6e3;
+/*
+Monokai style - ported by Luigi Maselli - http://grigio.org
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #272822; color: #ddd;
 }
 
-.hs-identifier {
-	color: #073642;
+.hljs-tag,
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-strong,
+.hljs-name {
+  color: #f92672;
 }
 
-.hs-identifier.hs-var {
+.hljs-code {
+  color: #66d9ef;
 }
 
-.hs-identifier.hs-type {
-	color: #5f5faf;
+.hljs-class .hljs-title {
+  color: white;
 }
 
-.hs-keyword {
-	color: #af005f;
+.hljs-attribute,
+.hljs-symbol,
+.hljs-regexp,
+.hljs-link {
+  color: #bf79db;
 }
 
-.hs-string, .hs-char {
-	color: #cb4b16;
+.hljs-string,
+.hljs-bullet,
+.hljs-subst,
+.hljs-title,
+.hljs-section,
+.hljs-emphasis,
+.hljs-type,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-addition,
+.hljs-variable,
+.hljs-template-tag,
+.hljs-template-variable {
+  color: #a6e22e;
 }
 
-.hs-number {
-	color: #268bd2;
+.hljs-comment,
+.hljs-quote,
+.hljs-deletion,
+.hljs-meta {
+  color: #75715e;
 }
 
-.hs-operator {
-	color: #d33682;
-}
-
-.hs-glyph, .hs-special {
-	color: #dc322f;
-}
-
-.hs-comment {
-	color: #8a8a8a;
-}
-
-.hs-pragma {
-	color: #2aa198;
-}
-
-.hs-cpp {
-	color: #859900;
-}
-
-a:link, a:visited {
-	text-decoration: none;
-	border-bottom: 1px solid #eee8d5;
-}
-
-a:hover, a.hover-highlight {
-	background-color: #eee8d5;
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-doctag,
+.hljs-title,
+.hljs-section,
+.hljs-type,
+.hljs-selector-id {
+  font-weight: bold;
 }

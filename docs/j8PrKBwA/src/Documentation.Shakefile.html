@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-operator">#!</span><span> </span><span class="hs-operator">/</span><span class="hs-identifier">usr</span><span class="hs-operator">/</span><span class="hs-identifier">bin</span><span class="hs-operator">/</span><span class="hs-identifier">env</span><span> </span><span class="hs-identifier">stack</span><span>
+</span><a name="line-2"></a><span class="hs-comment">{- stack
+  script
+  --resolver lts-10.4
+  --package clay
+  --package shake
+  --package text
+-}</span><span>
+</span><a name="line-9"></a><span>
+</span><a name="line-10"></a><span class="hs-comment">{- |
+Description: -
+  Generate Feram's documentation living at
+  &lt;feram.io/documentation/[secret]&gt;
+-}</span><span>
+</span><a name="line-15"></a><span>
+</span><a name="line-16"></a><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Documentation</span><span class="hs-operator">.</span><span class="hs-identifier">Shakefile</span><span> </span><span class="hs-keyword">where</span><span>
+</span><a name="line-17"></a><span>
+</span><a name="line-18"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Clay</span><span>
+</span><a name="line-19"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Development</span><span class="hs-operator">.</span><span class="hs-identifier">Shake</span><span>
+</span><a name="line-20"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Development</span><span class="hs-operator">.</span><span class="hs-identifier">Shake</span><span class="hs-operator">.</span><span class="hs-identifier">Command</span><span>
+</span><a name="line-21"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Development</span><span class="hs-operator">.</span><span class="hs-identifier">Shake</span><span class="hs-operator">.</span><span class="hs-identifier">FilePath</span><span>
+</span><a name="line-22"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Development</span><span class="hs-operator">.</span><span class="hs-identifier">Shake</span><span class="hs-operator">.</span><span class="hs-identifier">Util</span><span>
+</span><a name="line-23"></a><span class="hs-keyword">import</span><span> </span><span class="hs-identifier">Data</span><span class="hs-operator">.</span><span class="hs-identifier">Text</span><span class="hs-operator">.</span><span class="hs-identifier">Lazy</span><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">unpack</span><span class="hs-special">)</span><span>
+</span><a name="line-24"></a><span>
+</span><a name="line-25"></a><span class="hs-keyword">import</span><span> </span><a href="Documentation.Style.Code.html"><span class="hs-identifier">Documentation</span><span class="hs-operator">.</span><span class="hs-identifier">Style</span><span class="hs-operator">.</span><span class="hs-identifier">Code</span></a><span> </span><span class="hs-special">(</span><a href="Documentation.Style.Code.html#stylesheet"><span class="hs-identifier hs-var">stylesheet</span></a><span class="hs-special">)</span><span>
+</span><a name="line-26"></a><span>
+</span><a name="line-27"></a><span>
+</span><a name="line-28"></a><a name="basePath"><a href="Documentation.Shakefile.html#basePath"><span class="hs-identifier">basePath</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-string">&quot;docs/j8PrKBwA&quot;</span><span>
+</span><a name="line-29"></a><a name="styleCodePath"><a href="Documentation.Shakefile.html#styleCodePath"><span class="hs-identifier">styleCodePath</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><a href="Documentation.Shakefile.html#basePath"><span class="hs-identifier hs-var">basePath</span></a><span> </span><span class="hs-operator hs-var">++</span><span> </span><span class="hs-string">&quot;/src/style.css&quot;</span><span>
+</span><a name="line-30"></a><span>
+</span><a name="line-31"></a><span>
+</span><a name="line-32"></a><span class="hs-identifier">main</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-identifier hs-type">IO</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><a name="line-33"></a><a name="main"><a href="Documentation.Shakefile.html#main"><span class="hs-identifier">main</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-var">shakeArgs</span><span> </span><span class="hs-identifier hs-var">shakeOptions</span><span class="hs-special">{</span><span class="hs-identifier">shakeFiles</span><span class="hs-glyph">=</span><span class="hs-string">&quot;shakecache&quot;</span><span class="hs-special">}</span><span> </span><span class="hs-operator hs-var">$</span><span> </span><span class="hs-keyword">do</span><span>
+</span><a name="line-34"></a><span>
+</span><a name="line-35"></a><span>  </span><span class="hs-identifier hs-var">want</span><span> </span><span class="hs-special">[</span><a href="Documentation.Shakefile.html#styleCodePath"><span class="hs-identifier hs-var">styleCodePath</span></a><span class="hs-special">]</span><span>
+</span><a name="line-36"></a><span>
+</span><a name="line-37"></a><span>  </span><a href="Documentation.Shakefile.html#styleCodePath"><span class="hs-identifier hs-var">styleCodePath</span></a><span> </span><span class="hs-operator hs-var">%&gt;</span><span> </span><span class="hs-glyph">\</span><a name="local-6989586621679051177"><a href="#local-6989586621679051177"><span class="hs-identifier">out</span></a></a><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><a name="line-38"></a><span>    </span><span class="hs-keyword">let</span><span> </span><a name="local-6989586621679051178"><a href="#local-6989586621679051178"><span class="hs-identifier">src</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-string">&quot;Documentation/Style/Code.hs&quot;</span><span>
+</span><a name="line-39"></a><span>    </span><span class="hs-keyword">let</span><span> </span><a name="local-6989586621679051179"><a href="#local-6989586621679051179"><span class="hs-identifier">css</span></a></a><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-identifier hs-var">renderWith</span><span> </span><span class="hs-identifier hs-var">pretty</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><a href="Documentation.Style.Code.html#stylesheet"><span class="hs-identifier hs-var">stylesheet</span></a><span>
+</span><a name="line-40"></a><span>    </span><span class="hs-identifier hs-var">need</span><span> </span><span class="hs-special">[</span><a href="#local-6989586621679051178"><span class="hs-identifier hs-var">src</span></a><span class="hs-special">]</span><span>
+</span><a name="line-41"></a><span>    </span><span class="hs-identifier hs-var">writeFileChanged</span><span> </span><a href="#local-6989586621679051177"><span class="hs-identifier hs-var">out</span></a><span> </span><span class="hs-special">(</span><span class="hs-identifier hs-var">unpack</span><span> </span><a href="#local-6989586621679051179"><span class="hs-identifier hs-var">css</span></a><span class="hs-special">)</span><span>
+</span><a name="line-42"></a><span>
+</span><a name="line-43"></a><span>  </span><span class="hs-identifier hs-var">phony</span><span> </span><span class="hs-string">&quot;clean&quot;</span><span> </span><span class="hs-operator hs-var">$</span><span> </span><span class="hs-keyword">do</span><span>
+</span><a name="line-44"></a><span>    </span><span class="hs-identifier hs-var">putNormal</span><span> </span><span class="hs-string">&quot;Cleaning files in docs and cache directory&quot;</span><span>
+</span><a name="line-45"></a><span>    </span><span class="hs-identifier hs-var">removeFilesAfter</span><span> </span><span class="hs-string">&quot;docs&quot;</span><span> </span><span class="hs-special">[</span><span class="hs-string">&quot;//*&quot;</span><span class="hs-special">]</span><span>
+</span><a name="line-46"></a><span>    </span><span class="hs-identifier hs-var">removeFilesAfter</span><span> </span><span class="hs-string">&quot;shakecache&quot;</span><span> </span><span class="hs-special">[</span><span class="hs-string">&quot;//*&quot;</span><span class="hs-special">]</span><span>
+</span><a name="line-47"></a></pre></body></html>
