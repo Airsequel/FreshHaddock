@@ -168,8 +168,14 @@ main = shakeArgs customShakeOptions $ do
 
 
   "repos/*/readme.md" %> \out -> do
-    let feramUrl = "https://github.com/feramhq/"
+    githubToken <- getEnv "GITHUB_TOKEN"
+    let
+      feramUrl = "github.com/feramhq/"
+      url = case githubToken of
+        Nothing -> "https://" ++ feramUrl
+        Just token -> "https://" ++ token ++ ":x-oauth-basic@" ++ feramUrl
+
     cmd_
       "git clone"
-      [feramUrl ++ (takeBaseName $ takeDirectory out)]
+      [url ++ (takeBaseName $ takeDirectory out)]
       [takeDirectory out]
