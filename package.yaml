@@ -1,3 +1,15 @@
+name: feram-documentation
+version: 0.1.0.0
+github: feramhq/documentation
+license: AllRightsReserved
+author: Adrian Sieber
+maintainer: adrian@feram.io
+copyright: Feram GmbH
+
+description: >-
+  Please see the readme on GitHub at
+  <https://github.com/feramhq/documentation>
+
 dependencies:
   - base
   - clay
