@@ -8,6 +8,8 @@ cache:
 
 before_install:
   # Install latest version of stack
+  - mkdir -p ~/.local/bin
+  - export PATH=$HOME/.local/bin:$PATH
   - >-
     travis_retry
     curl --location https://www.stackage.org/stack/linux-x86_64
