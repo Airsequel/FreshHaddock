@@ -39,6 +39,7 @@ repos =
   "cli" :
   "config" :
   "core" :
+  "dashboard" :
   "design" :
   "documentation" :
   "feram-io" :
