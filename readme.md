@@ -16,40 +16,8 @@ Haddock | Syntax Highlighting
 
 ## Development
 
-Install dependencies:
+Run shake to build the documenation:
 
-```sh
-npm install
-```
-
-
-Install and build the "Velvet" Haddock theme:
-
-```sh
-git clone https://github.com/sourrust/velvet
-cd velvet
-npx grunt
-```
-
-
-Finally build the documenatation.
-(assuming this repo lies in Feram's root directory)
-
-```fish
-stack exec -- \
-haddock \
-  --html \
-  --hyperlinked-source \
-  --odir=./docs/j8PrKBwA \
-  --theme=./velvet/build \
-  --title="Feram's Documentation" \
-  --prologue="./prologue.md" \
-  (fd --exclude=migrate.hs "\.l?hs\$" "..")
-```
-
-
-Then run this to overwrite the default syntax highlighting theme:
-
-```sh
+```shell
 ./Documentation/Shakefile.hs
 ```

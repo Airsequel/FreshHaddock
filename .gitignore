@@ -1,3 +1,5 @@
 /velvet
 /.stack-work
+/repos
 /shakecache
+/*.cabal

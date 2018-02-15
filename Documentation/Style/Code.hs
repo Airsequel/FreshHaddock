@@ -1,3 +1,8 @@
+{- |
+Description: -
+  Generate stylesheet for syntax highlighting of Haddock output
+-}
+
 {-# LANGUAGE OverloadedStrings #-}
 
 module Documentation.Style.Code where
