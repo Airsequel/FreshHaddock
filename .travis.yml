@@ -23,6 +23,7 @@ script:
 deploy:
   local-dir: docs
   provider: pages
+  repo: feramhq/documentation
   skip_cleanup: true
   github-token: $GITHUB_TOKEN
   keep-history: true
