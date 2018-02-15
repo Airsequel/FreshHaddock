@@ -127,12 +127,12 @@ with Haddock.
 -}
 main :: IO ()
 main = shakeArgs customShakeOptions $ do
-  let readmes = fmap (("repos/" ++) . (++ "/readme.md")) repos
+  let gitHeads = fmap (("repos/" ++) . (++ "/.git/HEAD")) repos
 
   want ["all"]
 
   phony "all" $ do
-    need readmes
+    need gitHeads
     need ["velvet/package-lock.json"]
     need [docsIndex]
 
@@ -167,18 +167,16 @@ main = shakeArgs customShakeOptions $ do
     void $ forP dirsToDelete deleteDir
 
 
-  "repos/*/readme.md" %> \out -> do
+  "repos/*/.git/HEAD" %> \out -> do
     githubToken <- getEnv "GITHUB_TOKEN"
 
     let
+      slug = takeDirectory $ takeDirectory out
+      repoName = takeBaseName slug
       feramUrl = "github.com/feramhq/"
       url = case githubToken of
         Nothing -> "https://" ++ feramUrl
         Just token -> "https://" ++ token ++ ":x-oauth-basic@" ++ feramUrl
 
-    putNormal $ "Clone with URL: " ++ url
-
-    cmd_
-      "git clone"
-      [url ++ (takeBaseName $ takeDirectory out)]
-      [takeDirectory out]
+    cmd_ "rm -rf" [slug ++ "/.git"] -- Delete automatically generated stub
+    cmd_ "git clone" [url ++ repoName] slug
