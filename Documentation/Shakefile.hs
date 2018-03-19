@@ -45,9 +45,6 @@ repos =
   "feram-io" :
   "finances" :
   "fix-indefinite-article" :
-  "fix-package-file" :
-  "fix-target-blank" :
-  "fix-typos" :
   "mirror-repos" :
   "modules" :
   "perspectra" :
