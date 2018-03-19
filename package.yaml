@@ -11,8 +11,11 @@ description: >-
   <https://github.com/feramhq/documentation>
 
 dependencies:
+  - aeson
+  - aeson-pretty
   - base
   - clay
+  - language-docker
   - shake
   - text
 
