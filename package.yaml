@@ -14,10 +14,16 @@ dependencies:
   - aeson
   - aeson-pretty
   - base
+  - bytestring
   - clay
+  - extra
+  - free
+  - hashable
   - language-docker
+  - protolude
   - shake
   - text
+  - unordered-containers
 
 library:
   source-dirs: .
