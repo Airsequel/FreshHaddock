@@ -1,28 +1,96 @@
-{- |
-Description: -
-  Generate stylesheet for syntax highlighting of Haddock output
--}
+module Style.Code where
 
-{-# LANGUAGE OverloadedStrings #-}
-
-module Documentation.Style.Code where
-
-import Prelude hiding (div, span, filter, rem)
-import Clay hiding (wrap)
+import Clay (
+  Auto (auto),
+  Color,
+  Css,
+  None (none),
+  Normal (normal),
+  Other (other),
+  a,
+  absolute,
+  after,
+  backgroundColor,
+  black,
+  body,
+  borderBottomStyle,
+  borderBottomWidth,
+  borderWidth,
+  brightness,
+  bsColor,
+  color,
+  content,
+  darken,
+  em,
+  filter,
+  fontFamily,
+  fontSize,
+  fontWeight,
+  height,
+  hover,
+  hsl,
+  left,
+  lighten,
+  margin,
+  marginTop,
+  maxWidth,
+  monospace,
+  outline,
+  padding,
+  pct,
+  position,
+  pre,
+  px,
+  relative,
+  shadowWithSpread,
+  solid,
+  span,
+  stringContent,
+  sym,
+  sym2,
+  textDecoration,
+  white,
+  width,
+  yellowgreen,
+  zIndex,
+  (#),
+  (&),
+  (?),
+ )
+import Clay.Box (boxShadow)
 import Clay.Flexbox (wrap)
+import Data.List.NonEmpty qualified as NonEmpty
 import Data.Monoid ((<>))
+import Prelude hiding (div, filter, rem, span)
 
 
 -- | Define foreground colors
+fgColor :: Color
 fgColor = white
+
+
+fgMuted :: Color
 fgMuted = darken 0.05 fgColor
+
+
+fgQuiet :: Color
 fgQuiet = darken 0.1 fgColor
 
 
 -- | Define background colors
+bgColor :: Color
 bgColor = black
+
+
+bgMuted :: Color
 bgMuted = lighten 0.05 bgColor
+
+
+bgQuiet :: Color
 bgQuiet = lighten 0.1 bgColor
+
+
+bgSilent :: Color
 bgSilent = lighten 0.15 bgColor
 
 
@@ -34,7 +102,7 @@ stylesheet = do
     sym padding (em 0)
     sym margin (em 0)
     fontSize (px 12)
-    -- zIndex (-20)
+  -- zIndex (-20)
 
   pre ? do
     backgroundColor bgQuiet
@@ -43,8 +111,7 @@ stylesheet = do
     sym2 padding (em 2) (em 2)
     fontWeight normal
     fontFamily ["Source Code Pro", "Inconsolata"] [monospace]
-    -- zIndex (-10)
-
+  -- zIndex (-10)
 
   a ? do
     textDecoration none
@@ -67,27 +134,34 @@ stylesheet = do
         filter (brightness 0.4)
         zIndex (-1)
 
-  a # hover <> a # ".hover-highlight" ? do
-    span ? do
+  a # hover
+    <> a # ".hover-highlight" ? do
+      span ? do
+        backgroundColor bgMuted
+
+        -- Generate a fake padding with box-shadow and outline
+        boxShadow $
+          NonEmpty.singleton $
+            bsColor (other "currentColor") $
+              shadowWithSpread (em 0) (em 0) (em 0) (px 3)
+        outline solid (px 2) bgMuted
+
+        filter (brightness 1.4)
+        after & do
+          borderBottomWidth (px 0)
+
+  ":target"
+    <> ":target span" ? do
       backgroundColor bgMuted
-
-      -- Generate a fake padding with box-shadow and outline
-      boxShadowWithSpread (em 0) (em 0) (em 0) (px 3) (other "currentColor")
+      boxShadow $
+        NonEmpty.singleton $
+          bsColor fgQuiet $
+            shadowWithSpread (em 0) (em 0) (em 10) (em 0.2)
       outline solid (px 2) bgMuted
-
-      filter (brightness 1.4)
+      borderWidth (px 0)
+      zIndex 10
       after & do
         borderBottomWidth (px 0)
-
-  ":target" <> ":target span" ? do
-    backgroundColor bgMuted
-    boxShadowWithSpread (em 0) (em 0) (em 10) (em 0.2) fgQuiet
-    outline solid (px 2) bgMuted
-    borderWidth (px 0)
-    zIndex 10
-    after & do
-      borderBottomWidth (px 0)
-
 
   ".hs-identifier" ? do
     color fgQuiet

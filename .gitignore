@@ -1,5 +1,7 @@
-/velvet
+*-temp*
 /.stack-work
+/*.cabal
+/docs
 /repos
 /shakecache
-/*.cabal
+/velvet

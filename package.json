@@ -1,28 +1,26 @@
 {
-  "name": "@feram/documentation",
+  "name": "fresh-haddock",
   "version": "0.1.0",
-  "description": "Feram's documentation",
-  "main": "Shakefile.hs",
+  "description": "Fresh Haddock",
+  "private": true,
+  "author": "Adrian Sieber",
+  "license": "ISC",
+  "keywords": [
+    "haskell",
+    "haddock",
+    "documentation"
+  ],
   "directories": {
     "doc": "docs"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "homepage": "https://github.com/Airsequel/FreshHaddock#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/feramhq/documentation.git"
+    "url": "git+https://github.com/Airsequel/FreshHaddock.git"
   },
-  "keywords": [
-    "feram",
-    "documentation"
-  ],
-  "author": "Adrian Sieber",
-  "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/feramhq/documentation/issues"
+    "url": "https://github.com/Airsequel/FreshHaddock/issues"
   },
-  "homepage": "https://github.com/feramhq/documentation#readme",
   "dependencies": {
     "grunt": "^1.0.2",
     "grunt-cli": "^1.2.0",

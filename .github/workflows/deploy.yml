@@ -1,0 +1,38 @@
+name: Deploy Website
+
+on: [push]
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: stack --no-terminal --install-ghc test --only-dependencies
+
+      - name: Build
+        run: ./Documentation/Shakefile.hs
+
+      - name: Cache .stack-work
+        uses: actions/cache@v4
+        with:
+          path: .stack-work
+          key: tasklite_stack-work_ubuntu
+          restore-keys: tasklite_stack-work_ubuntu
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './docs'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

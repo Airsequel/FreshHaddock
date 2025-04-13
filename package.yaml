@@ -10,20 +10,36 @@ description: >-
   Please see the readme on GitHub at
   <https://github.com/feramhq/documentation>
 
+language: GHC2021
+
+default-extensions:
+  - DeriveAnyClass
+  - LambdaCase
+  - MultiWayIf
+  - OverloadedRecordDot
+  - OverloadedStrings
+  - RecordWildCards
+  - TypeFamilies
+  - UndecidableInstances
+
 dependencies:
   - aeson
   - aeson-pretty
   - base
   - bytestring
   - clay
+  - directory
   - extra
   - free
   - hashable
   - language-docker
+  - monoid-subclasses
   - protolude
   - shake
   - text
   - unordered-containers
 
-library:
-  source-dirs: .
+executables:
+  fresh-haddock:
+    main: Main.hs
+    source-dirs: app
