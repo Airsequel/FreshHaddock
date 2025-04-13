@@ -227,6 +227,7 @@ main = shakeArgs customShakeOptions $ do
           [ stackYamlResolver
           , packages <&> ("./repos/" <>) & toList "packages"
           , toList "extra-deps" extraDeps
+          , "allow-newer: true"
           ]
 
     writeFileChanged out newContent
