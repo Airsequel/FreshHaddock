@@ -1,9 +1,10 @@
-# Feram's Documentation
+# FreshHaddock
 
-This repo contains Feram's documentation hosted at
-[feram.io/documentation/j8PrKBwA/][docs-url]
+FreshHaddock lets you create a Haddock documentation site
+for your Haskell projects with a modern look and feel.
 
-It uses a custom theme to improve the design.
+It's powered by [Shake](https://shakebuild.com/manual)
+and uses a custom theme to improve the design.
 
 Haddock | Syntax Highlighting
 --------|---------------------
@@ -14,10 +15,9 @@ Haddock | Syntax Highlighting
 [landing]: ./images/2018-02-11_screenshot_documentation.png
 
 
-## Development
+## Usage
 
-Run shake to build the documenation:
-
-```shell
-./Documentation/Shakefile.hs
-```
+1. Clone the repository
+1. Update the list of repos and packages in [`app/Main.hs`](./app/Main.hs)
+1. Run `make build` to build the documentation site for all the packages
+1. Check the `docs` folder for the generated documentation
