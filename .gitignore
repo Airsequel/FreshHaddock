@@ -1,3 +1,4 @@
+.direnv
 *-temp*
 /.stack-work
 /*.cabal
