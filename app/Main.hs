@@ -76,6 +76,7 @@ extraDeps =
   , "double-x-encoding-1.2.1"
   , "graphql-spice-1.0.6.0"
   , "hip-1.5.6.0"
+  , "ilist-0.4.0.1"
   , "iso8601-duration-0.1.2.0"
   , "servant-options-0.1.0.0"
   , -- " , simple-sql-parser-0.7.1"
@@ -225,6 +226,7 @@ main = shakeArgs customShakeOptions $ do
       newContent =
         unlines
           [ stackYamlResolver
+          , "system-ghc: true" -- Use the GHC provided by the Nix dev shell
           , packages <&> ("./repos/" <>) & toList "packages"
           , toList "extra-deps" extraDeps
           , "allow-newer: true"
