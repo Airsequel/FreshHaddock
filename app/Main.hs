@@ -81,6 +81,7 @@ extraDeps =
   , "servant-options-0.1.0.0"
   , -- " , simple-sql-parser-0.7.1"
     "repa-3.4.2.0"
+  , "webp-0.1.2.0"
   ]
 
 
