@@ -71,7 +71,7 @@ packages =
 -- TODO: Automatically load from repos
 extraDeps :: [String]
 extraDeps =
-  [ "dear-imgui-2.3.1"
+  [ "dear-imgui-2.4.1" -- 2.4.1 fixes linker errors on GHC 9.10+
   , "docopt-0.7.0.8"
   , "double-x-encoding-1.2.1"
   , "graphql-spice-1.0.6.0"
