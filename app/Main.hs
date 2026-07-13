@@ -93,6 +93,10 @@ repos =
   packages <&> takeDirectory & nub
 
 
+gitHeads :: [String]
+gitHeads = repos <&> (("repos/" <>) <<< (<> "/.git/HEAD"))
+
+
 stackYamlTempPath :: String
 stackYamlTempPath = "stack-temp.yaml"
 
@@ -132,6 +136,13 @@ without making it discoverable.
 -}
 buildDocsIndex :: FilePath -> Action ()
 buildDocsIndex out = do
+  need $ gitHeads <> ["velvet/package-lock.json"]
+  -- Shake batches adjacent `need`/`apply` calls and runs them in parallel,
+  -- so an effectful statement must separate the `need` above from the
+  -- `getDirectoryFiles` below to guarantee all repos are cloned
+  -- before the globbing and `stack haddock` run.
+  putNormal "Cloned all repos and built the Haddock theme"
+
   hsFiles <- getDirectoryFiles "" ["repos//*.hs"]
   lhsFiles <- getDirectoryFiles "" ["repos//*.lhs"]
 
@@ -194,13 +205,9 @@ with Haddock.
 -}
 main :: IO ()
 main = shakeArgs customShakeOptions $ do
-  let gitHeads = repos <&> (("repos/" <>) <<< (<> "/.git/HEAD"))
-
   want ["all"]
 
   phony "all" $ do
-    need gitHeads
-    need ["velvet/package-lock.json"]
     need [docsIndex]
 
   "velvet/package-lock.json" %> getTheme

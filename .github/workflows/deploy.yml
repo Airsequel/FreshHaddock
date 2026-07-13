@@ -12,18 +12,34 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install system libraries
+        # Required by bindings-GLFW (X11 + GL), dear-imgui (SDL2 + GLEW),
+        # magic (libmagic), and webp (libwebp)
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends \
+            libgl1-mesa-dev \
+            libglew-dev \
+            libglu1-mesa-dev \
+            libmagic-dev \
+            libsdl2-dev \
+            libwebp-dev \
+            xorg-dev
+
+      - name: Cache Stack directories
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.stack
+            .stack-work
+          key: freshhaddock_stack_ubuntu_${{ hashFiles('stack.yaml.lock', 'package.yaml') }}
+          restore-keys: freshhaddock_stack_ubuntu_
+
       - name: Install Dependencies
         run: stack --no-terminal --install-ghc test --only-dependencies
 
       - name: Build
         run: make build
-
-      - name: Cache .stack-work
-        uses: actions/cache@v4
-        with:
-          path: .stack-work
-          key: tasklite_stack-work_ubuntu
-          restore-keys: tasklite_stack-work_ubuntu
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
